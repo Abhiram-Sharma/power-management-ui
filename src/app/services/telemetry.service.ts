@@ -12,8 +12,8 @@ export class TelemetryService {
   public telemetryData$: Observable<TelemetryData>;
 
   constructor() {
-    this.socket$ = webSocket('ws://localhost:8000/ws/telemetry');
-    
+    this.socket$ = webSocket('https://reprogram-jolt-taco.ngrok-free.dev/ws/telemetry');
+
     this.telemetryData$ = this.socket$.asObservable().pipe(
       throttleTime(50),
       retry({
