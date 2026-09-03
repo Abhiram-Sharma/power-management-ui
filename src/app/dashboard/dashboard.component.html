@@ -1,0 +1,42 @@
+<div class="p-6 bg-slate-900 min-h-screen text-slate-100 flex flex-col font-sans">
+  
+  <!-- Flashing Pruning Banner -->
+  <div *ngIf="isPruning" 
+       class="w-full bg-red-600 text-white font-bold text-center py-3 mb-6 rounded-lg shadow-[0_0_15px_rgba(220,38,38,0.7)] animate-pulse transition-all duration-300 flex items-center justify-center gap-3">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+    </svg>
+    SYSTEM PRUNING ACTIVE
+  </div>
+
+  <!-- Real-time Statistics Header -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+    <div class="bg-slate-800 rounded-xl p-6 shadow-lg border border-slate-700/50 flex flex-col">
+      <span class="text-slate-400 text-sm uppercase font-semibold tracking-wider mb-2">Core Temperature</span>
+      <div class="flex items-end gap-3">
+        <span class="text-5xl font-black text-rose-500 tracking-tight">{{ latestTemperature | number:'1.1-2' }}</span>
+        <span class="text-xl text-slate-500 font-medium mb-1">°C</span>
+      </div>
+    </div>
+    
+    <div class="bg-slate-800 rounded-xl p-6 shadow-lg border border-slate-700/50 flex flex-col">
+      <span class="text-slate-400 text-sm uppercase font-semibold tracking-wider mb-2">System Voltage</span>
+      <div class="flex items-end gap-3">
+        <span class="text-5xl font-black text-emerald-400 tracking-tight">{{ latestVoltage | number:'1.1-2' }}</span>
+        <span class="text-xl text-slate-500 font-medium mb-1">V</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Chart Container -->
+  <div class="flex-grow bg-slate-800 rounded-xl p-6 shadow-lg border border-slate-700/50 min-h-[400px] flex flex-col relative">
+    <h2 class="text-xl font-bold mb-6 text-slate-200">Real-time Telemetry Stream</h2>
+    <div class="flex-grow relative w-full h-[400px]">
+      <canvas baseChart
+              [data]="lineChartData"
+              [options]="lineChartOptions"
+              [type]="lineChartType">
+      </canvas>
+    </div>
+  </div>
+</div>
