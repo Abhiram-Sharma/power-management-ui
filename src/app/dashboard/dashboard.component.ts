@@ -6,10 +6,9 @@ import { TelemetryService } from '../services/telemetry.service';
 import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'app-dashboard',
-  standalone: true,
-  imports: [CommonModule, BaseChartDirective],
-  templateUrl: './dashboard.component.html'
+    selector: 'app-dashboard',
+    imports: [CommonModule, BaseChartDirective],
+    templateUrl: './dashboard.component.html'
 })
 export class DashboardComponent implements OnInit, OnDestroy {
   public latestTemperature: number = 0;
